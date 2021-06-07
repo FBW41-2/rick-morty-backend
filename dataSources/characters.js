@@ -15,10 +15,12 @@ const getCharacters = async () => {
 
 getCharacters()
 
-const returnCharacters = () => {
+exports.getFiveRandomCharacters = () => {
     const randIndices = Array.from({length: 5}, () => Math.floor(Math.random() * characters.length))
     const selectedCharacters = randIndices.map(i => characters[i])
     return selectedCharacters
 }
 
-module.exports = returnCharacters
+exports.getAllCharacters = () => {
+    return characters
+}
