@@ -10,13 +10,11 @@ exports.collectCharacter = async (req, res) => {
     const userId = '60bde70b21f9591321a59736'
 
     try {
-        const result = await User.findByIdAndUpdate(userId, { $push: { characters: data.character } }, {new: true})
-        console.log("user", result)
+        const user = await User.findByIdAndUpdate(userId, { $push: { characters: data.character } }, {new: true})
+        res.json(getAllCharacters().filter(item => user.characters.includes(item.id)))
     } catch (error) {
         console.error(error)
     }
-    
-    res.json({collected: data.character})
 }
 
 exports.getCollection = async (req, res) => {
